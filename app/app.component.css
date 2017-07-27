@@ -1,0 +1,17 @@
+li {
+    font-size: large;
+}
+li:hover{
+    background-color: lightgray;
+}
+li:active, :visited{
+    background-color: gray;
+}
+
+
+div.panel-heading {
+   font-size: x-large; 
+}
+.navbar-brand{
+    background-color: bisque;
+}

@@ -1,0 +1,172 @@
+﻿<div class="panel">
+    <div class="panel-heading">
+        {{pageTitle}}
+    </div>
+  <!--  <button type="button" class="btn btn-default" (click)="modal.open()">Set Points!</button> 
+
+<button type="button" class="btn btn-default" (click)="openLoginDialog()">Configure Set Points!</button>
+-->
+<modal #modal>
+    <modal-header [show-close]="true">
+        <h4 class="modal-title">User Information:</h4>
+    </modal-header>
+    <modal-body>
+        <div class='form-group'>
+            <label class='control-label' style="color:#333"> E-mail : </label>
+            <!-- <input type="text" [(ngModel)] = 'flowratesp' class='form-control' style="width:80%">  -->
+            <input type="text" #emailId class='form-control' style="width:80%">
+        </div>   
+         <div class='form-group'>
+            <label class='control-label' style="color:#333"> Phone No : </label>
+            <!-- <input type="text" [(ngModel)] = 'tanklevelsp' class='form-control' style='width:80%'> -->
+            <input type="text" #phoneNo class='form-control' style="width:80%">
+        </div>  
+    </modal-body>
+    <modal-footer [show-default-buttons]="false">
+       <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.dismiss()">Cancel</button>
+      <!--  <button type="button" class="btn btn-primary" (click)="updateSetPoints(flowratesp, tanklevelsp, emailId.value)">Submit</button>  -->
+      <button type="button" class="btn btn-primary" (click)="userDetailsForm( emailId.value, phoneNo.value)">Submit</button>
+    </modal-footer>
+</modal>
+    <!--
+    <div class="panel-body"  >
+        <div class="row img-container" >
+            <div class="table-details panel">
+                <div class="panel-heading exon-panelHeading">
+                    Well Details
+                </div>
+                <div class="panel-body ex-container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group form-inline">
+                                <label>Well Depth:</label>
+                                <span>210</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group form-inline">
+                                <label>Well Depth:</label>
+                                <span>210</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group form-inline">
+                                <label>Well Depth:</label>
+                                <span>210</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group form-inline">
+                                <label>Well Depth:</label>
+                                <span>210</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group form-inline">
+                                <label></label>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            -->
+<!--
+            <div class="inset statusswitch" ng-cloak>
+            <md-switch [ng-model]="cb1" aria-label="Switch 1">
+            Switch 1: {{ data.cb1 }}
+            </md-switch>
+            </div>
+            -->
+    <div class="runningStatus form-group form-inline">
+            <div style="font-size : 18px">
+            <label>Running Status: </label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+            
+              <!--   <span><b>{{findObjFromArray('Status').dValue}}</b></span><br>  -->
+             <!--   <span><b>{{jsonlist ? jsonlist[0].pumpstatus : ""}}</b></span>  -->
+           <!-- <span>Structural Loading(%):</span><span><b> 65</b></span> -->
+
+           <div class="item" class="form-inline">
+		<!--	<input type="checkbox" id="toggle_today_summary" [checked]= 'pumpStatusBoolean' (change) = 'pumpBooleanChange(checked.value)' > -->
+        <input type="checkbox" id="toggle_today_summary" [(ngModel)]= 'pumpStatusBoolean' (change) = 'pumpBooleanChange(pumpStatusBoolean)' >
+            <div class="toggle">
+				<label for="toggle_today_summary"><i></i></label>
+			</div>
+		</div>
+    </div>
+
+            <!-- toggle button 
+
+            [ngModel]="datalist?.pumpstatus" (ngModelChange)="datalist?.pumpstatus ? datalist.pumpstatus =$event : null"
+
+            <div class="col-md-4">
+  <label class="toggle col-sm-8">
+    <input type="checkbox"(click)="Existing()">
+    <span class="handle"></span>
+  </label>
+</div>
+
+<h2 class='bg-danger'>Your Switch value Is  : {{value}}</h2>
+-->
+
+        </div>   
+
+  <!--      <ui-switch></ui-switch>  -->
+
+
+            <div class="flowRate">
+                <span>Flow Rate (bpd):</span>
+         <!--      <span><b>{{findObjFromArray('Flow Rate').dValue}} {{findObjFromArray('Flow Rate').dValue}}</b></span> -->
+              <span><b>{{jsonlist ? jsonlist[0].flowrate : ''}}</b></span>  
+            </div>
+<div class="tankLevel" style="font-size: 18px">
+    <span>Tank Level :</span>
+   <!-- <span><b>{{findObjFromArray('Tank Level').dValue}} {{findObjFromArray('Tank Level').dType}}</b></span>  -->
+   <span><b>{{jsonlist ? jsonlist[0].tanklevel : ""}}</b></span> 
+</div>
+
+<!-- Tank Level Setpoints -->
+<div class="setPoints form-group form-inline">
+    <div>
+<label class="control-label" style='min-width:150px'>Tank Level High : </label>
+<span *ngIf = "!editMode"> {{jsonlist ? jsonlist[0].tanklevelsp : ''}}</span>
+<input *ngIf = "editMode" type="textbox" id="tankLevelHigh" class='form-control' [(ngModel)]='tanklevelsp1' style="width: 55px">
+    </div>
+    <div style='margin-top : 10px' >
+<label class="control-label" style='min-width:150px'>Tank Level High High : </label>
+<span *ngIf = "!editMode"> {{jsonlist ? jsonlist[0].flowratesp : ''}}</span>
+<input *ngIf = "editMode" type="textbox" id="tankLevelHighHigh" class='form-control' [(ngModel)]='flowratesp1' style="width: 55px">
+    </div>
+<button type="button" *ngIf = "!editMode" class="editSetPoints btn btn-primary" (click)="editingMode()">Edit</button>
+<button type="button" *ngIf = "editMode" class="btn btn-primary" (click)="setHighPoints( tanklevelsp1, flowratesp1)">Update</button>
+
+<!-- <button type="button" *ngIf = "editMode" class="btn btn-primary" (click)="setHighPoints( tankLevelHigh.value, tankLevelHighHigh.value)">Update</button> -->
+
+</div>
+
+<!-- Oil Level in Tank Component -->
+
+<div class="oilLevelChart">
+    <!--<oil-amchart></oil-amchart>-->
+</div>
+ 
+<!--
+<div>
+    <button>Make Request </button> 
+    <span> Data from My url is {{cosmoList ? cosmoList[0].tanklevel : "??"}}</span>
+   <span> Data from My url is {{ data[0]}}</span> 
+    </div>
+    -->
+
+            <img src="./app/assets/images/image.png"
+                 class="img-responsive center-block"/>
+       
+</div>
