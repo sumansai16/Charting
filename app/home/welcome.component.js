@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 var Rx_1 = require('rxjs/Rx');
 var ng2_bs3_modal_1 = require('ng2-bs3-modal/ng2-bs3-modal');
+var amcharts3_angular_1 = require("@amcharts/amcharts3-angular");
 var WelcomeComponent = (function () {
     function WelcomeComponent(_http) {
         var _this = this;
@@ -35,8 +36,8 @@ var WelcomeComponent = (function () {
             //console.log(response);
             _this.datalist = _this.jsonlist[0];
             _this.pumpStatusBoolean = (_this.datalist.pumpstatus == "ON") ? true : false;
-            _this.flowratesp = _this.jsonlist[0].flowratesp;
-            _this.tanklevelsp = _this.jsonlist[0].tanklevelsp;
+            _this.tanklevelhisp = _this.jsonlist[0].tanklevelhisp;
+            _this.tanklevelhihisp = _this.jsonlist[0].tanklevelhihisp;
             //console.log("json list is " + this.jsonlist);
             //  this.cb1 = (this.jsonlist[0].pumpstatus == 'ON') ? true : false;
             //this.flowratesp = this.jsonlist[0].flowratesp;
@@ -102,7 +103,7 @@ this._http.request('http://nextapi-xto.azurewebsites.net/api/RodPumpDemo/GetRodP
         headers.append('Content-Type', 'application/json');
         // let data = {flowratesp,tanklevelsp};
         //let data = {"tankLevelHigh":tankLevelHigh, "tankLevelHighHigh": tankLevelHighHigh};
-        var data = { "tanklevelsp": tankLevelHigh, "flowratesp": tankLevelHighHigh };
+        var data = { "tanklevelhisp": tankLevelHigh, "tanklevelhihisp": tankLevelHighHigh };
         this.editMode = false;
         var options = new http_1.RequestOptions({ headers: headers });
         return this._http.post('https://nextapi-xto.azurewebsites.net/api/RodPumpDemo/PostSPs', data, options)
@@ -133,8 +134,8 @@ this._http.request('http://nextapi-xto.azurewebsites.net/api/RodPumpDemo/GetRodP
     /*OnClick Edit */
     WelcomeComponent.prototype.editingMode = function () {
         this.editMode = true;
-        this.flowratesp1 = this.jsonlist[0].flowratesp;
-        this.tanklevelsp1 = this.jsonlist[0].tanklevelsp;
+        this.tanklevelhisp1 = this.jsonlist[0].tanklevelhisp;
+        this.tanklevelhihisp1 = this.jsonlist[0].tanklevelhihisp;
     };
     /* on Click Configure Set Points, Open Modal
     openLoginDialog(){
@@ -155,7 +156,8 @@ this._http.request('http://nextapi-xto.azurewebsites.net/api/RodPumpDemo/GetRodP
         core_1.Component({
             selector: 'welcome',
             templateUrl: 'app/home/welcome.component.html',
-            styleUrls: ['app/home/welcome.component.css']
+            styleUrls: ['app/home/welcome.component.css'],
+            providers: [amcharts3_angular_1.AmChartsService]
         }), 
         __metadata('design:paramtypes', [http_1.Http])
     ], WelcomeComponent);

@@ -35,7 +35,8 @@ var GetApiComponent = (function () {
                 height: 25px;
               }
           `],*/
-            template: "\n        <chart [options]=\"options\">\n        </chart>\n        <button (click)=\"addPoint()\">Click to add random points</button>\n    "
+            templateUrl: 'app/home/welcome.component.html',
+            styleUrls: ['app/home/welcome.component.css']
         }), 
         __metadata('design:paramtypes', [http_1.Http])
     ], GetApiComponent);

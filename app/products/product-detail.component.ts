@@ -7,7 +7,8 @@ import { IProduct } from './product';
 import { ProductService } from './product.service';
 
 @Component({
-    templateUrl: 'app/products/product-detail.component.html'
+    templateUrl: 'app/products/product-detail.component.html',
+    styleUrls: ['app/products/product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit, OnDestroy {
     pageTitle: string = 'Product Detail';

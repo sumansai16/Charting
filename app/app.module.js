@@ -16,12 +16,13 @@ var app_routing_1 = require('./app.routing');
 var app_component_1 = require('./app.component');
 var welcome_component_1 = require('./home/welcome.component');
 var hichart_component_1 = require('./charts/hichart.component');
-var oilAmChart_component_1 = require('./charts/oilAmChart.component');
+var oilChart_component_1 = require('./home/oilChart.component');
 var ng2_bs3_modal_1 = require('ng2-bs3-modal/ng2-bs3-modal');
 //import { UiSwitchModule } from '@youmesoft/ng2-ui-switch';
 var product_module_1 = require('./products/product.module');
 var angular2_highcharts_1 = require('angular2-highcharts');
 var amcharts3_angular_1 = require("@amcharts/amcharts3-angular");
+var flashlights_component_1 = require('./home/flashlights.component');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -39,8 +40,10 @@ var AppModule = (function () {
                 app_component_1.AppComponent,
                 welcome_component_1.WelcomeComponent,
                 hichart_component_1.HichartComponent,
-                oilAmChart_component_1.oilAmChartComponent
+                oilChart_component_1.oilChartComponent,
+                flashlights_component_1.flashLightsComponent
             ],
+            providers: [amcharts3_angular_1.AmChartsService],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

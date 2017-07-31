@@ -119,6 +119,9 @@
 
         </div>   
 
+<!-- Lights Component -->
+ <lights-component> </lights-component> 
+
   <!--      <ui-switch></ui-switch>  -->
 
 
@@ -133,20 +136,22 @@
    <span><b>{{jsonlist ? jsonlist[0].tanklevel : ""}}</b></span> 
 </div>
 
+<!-- oil tank level chart -->
+<oil-amchart> </oil-amchart>
 <!-- Tank Level Setpoints -->
 <div class="setPoints form-group form-inline">
     <div>
 <label class="control-label" style='min-width:150px'>Tank Level High : </label>
-<span *ngIf = "!editMode"> {{jsonlist ? jsonlist[0].tanklevelsp : ''}}</span>
-<input *ngIf = "editMode" type="textbox" id="tankLevelHigh" class='form-control' [(ngModel)]='tanklevelsp1' style="width: 55px">
+<span *ngIf = "!editMode"> {{jsonlist ? jsonlist[0].tanklevelhisp : ''}}</span>
+<input *ngIf = "editMode" type="textbox" id="tankLevelHigh" class='form-control' [(ngModel)]='tanklevelhisp1' style="width: 55px">
     </div>
     <div style='margin-top : 10px' >
 <label class="control-label" style='min-width:150px'>Tank Level High High : </label>
-<span *ngIf = "!editMode"> {{jsonlist ? jsonlist[0].flowratesp : ''}}</span>
-<input *ngIf = "editMode" type="textbox" id="tankLevelHighHigh" class='form-control' [(ngModel)]='flowratesp1' style="width: 55px">
+<span *ngIf = "!editMode"> {{jsonlist ? jsonlist[0].tanklevelhihisp : ''}}</span>
+<input *ngIf = "editMode" type="textbox" id="tankLevelHighHigh" class='form-control' [(ngModel)]='tanklevelhihisp1' style="width: 55px">
     </div>
 <button type="button" *ngIf = "!editMode" class="editSetPoints btn btn-primary" (click)="editingMode()">Edit</button>
-<button type="button" *ngIf = "editMode" class="btn btn-primary" (click)="setHighPoints( tanklevelsp1, flowratesp1)">Update</button>
+<button type="button" *ngIf = "editMode" class="btn btn-primary" (click)="setHighPoints( tanklevelhisp1, tanklevelhihisp1)">Update</button>
 
 <!-- <button type="button" *ngIf = "editMode" class="btn btn-primary" (click)="setHighPoints( tankLevelHigh.value, tankLevelHighHigh.value)">Update</button> -->
 
@@ -166,7 +171,8 @@
     </div>
     -->
 
-            <img src="./app/assets/images/image.png"
-                 class="img-responsive center-block"/>
+          <!--  <img src="./app/assets/images/image.png"
+                 class="img-responsive center-block"/> -->
+                 <div id="bgimg"></div>
        
 </div>

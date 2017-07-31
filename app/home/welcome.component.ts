@@ -7,13 +7,14 @@ import { BrowserModule }          from '@angular/platform-browser';
 import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 import {ModalComponent} from 'ng2-bs3-modal/ng2-bs3-modal';
 import { AmChartsService, AmChartsModule } from "@amcharts/amcharts3-angular";
-import { oilAmChartComponent } from '../charts/oilAmChart.component';
+import { oilChartComponent } from './oilChart.component';
+import { flashLightsComponent } from './flashlights.component';
 
 @Component({
     selector: 'welcome',
     templateUrl: 'app/home/welcome.component.html',
-    styleUrls : ['app/home/welcome.component.css']
-   //  providers : [AmChartsService]
+    styleUrls : ['app/home/welcome.component.css'],
+     providers : [AmChartsService]
 
 })
 export class WelcomeComponent implements OnInit {
@@ -24,10 +25,10 @@ export class WelcomeComponent implements OnInit {
     datalist: any;
     cosmoList : {};
     cb1 : boolean = true;
-    flowratesp : any;
-    tanklevelsp : any;
-    flowratesp1 : any;
-    tanklevelsp1 : any;
+    tanklevelhisp : any;
+    tanklevelhihisp : any;
+    tanklevelhisp1 : any;
+    tanklevelhihisp1 : any;
     pumpStatusBoolean : boolean;
     editMode: boolean = false;
    // _http1:any;
@@ -50,8 +51,8 @@ Observable.interval(1000).flatMap(() => {
 //console.log(response);
                 this.datalist = this.jsonlist[0];
                 this.pumpStatusBoolean = (this.datalist.pumpstatus == "ON") ? true : false;
-             this.flowratesp = this.jsonlist[0].flowratesp;
-            this.tanklevelsp = this.jsonlist[0].tanklevelsp;
+             this.tanklevelhisp = this.jsonlist[0].tanklevelhisp;
+            this.tanklevelhihisp = this.jsonlist[0].tanklevelhihisp;
              //console.log("json list is " + this.jsonlist);
            //  this.cb1 = (this.jsonlist[0].pumpstatus == 'ON') ? true : false;
              
@@ -124,7 +125,7 @@ setHighPoints(tankLevelHigh, tankLevelHighHigh) {
 headers.append('Content-Type', 'application/json');
 // let data = {flowratesp,tanklevelsp};
  //let data = {"tankLevelHigh":tankLevelHigh, "tankLevelHighHigh": tankLevelHighHigh};
- let data = {"tanklevelsp":tankLevelHigh, "flowratesp": tankLevelHighHigh};
+ let data = {"tanklevelhisp":tankLevelHigh, "tanklevelhihisp": tankLevelHighHigh};
  this.editMode = false;
 
  let options = new RequestOptions({ headers: headers });
@@ -164,8 +165,8 @@ headers.append('Content-Type', 'application/json');
 /*OnClick Edit */
 editingMode():void{
     this.editMode = true;
-    this.flowratesp1  = this.jsonlist[0].flowratesp;
-    this.tanklevelsp1  = this.jsonlist[0].tanklevelsp;
+    this.tanklevelhisp1  = this.jsonlist[0].tanklevelhisp;
+    this.tanklevelhihisp1  = this.jsonlist[0].tanklevelhihisp;
 }
 
 /* on Click Configure Set Points, Open Modal

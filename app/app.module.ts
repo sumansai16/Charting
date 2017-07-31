@@ -7,13 +7,14 @@ import { routing } from './app.routing';
 import { AppComponent }  from './app.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { HichartComponent } from './charts/hichart.component';
-import { oilAmChartComponent } from './charts/oilAmChart.component';
+import { oilChartComponent } from './home/oilChart.component';
 import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
 //import { UiSwitchModule } from '@youmesoft/ng2-ui-switch';
 
 import { ProductModule } from './products/product.module';
 import { ChartModule } from 'angular2-highcharts';
- import { AmChartsModule } from "@amcharts/amcharts3-angular";
+import { AmChartsModule, AmChartsService } from "@amcharts/amcharts3-angular";
+import { flashLightsComponent } from './home/flashlights.component';
 
 
 @NgModule({
@@ -30,8 +31,10 @@ import { ChartModule } from 'angular2-highcharts';
     AppComponent,
     WelcomeComponent,
     HichartComponent ,
-    oilAmChartComponent  
+    oilChartComponent,
+    flashLightsComponent  
   ],
+  providers:[ AmChartsService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

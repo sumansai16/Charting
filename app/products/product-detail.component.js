@@ -40,7 +40,8 @@ var ProductDetailComponent = (function () {
     };
     ProductDetailComponent = __decorate([
         core_1.Component({
-            templateUrl: 'app/products/product-detail.component.html'
+            templateUrl: 'app/products/product-detail.component.html',
+            styleUrls: ['app/products/product-detail.component.css']
         }), 
         __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, product_service_1.ProductService])
     ], ProductDetailComponent);

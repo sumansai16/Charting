@@ -8,6 +8,7 @@ import { ProductListComponent } from './product-list.component';
 import { ProductDetailComponent } from './product-detail.component';
 import { ProductFilterPipe } from './product-filter.pipe';
 import { ProductService } from './product.service';
+import  { flashLightComponent } from './home/flashlights.component';
 
 @NgModule({
   imports: [
