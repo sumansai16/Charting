@@ -12,14 +12,14 @@ import { AmChartsService, AmChartsModule } from "@amcharts/amcharts3-angular";
     selector: 'oil-amchart',
     styles: [`
       #chartdiv {
-        background: #3f3f4f;color:#ffffff;	
-	width		: 100%;
+      /*  background: #3f3f4f;color:#ffffff;	*/
+	width		: 100px;
 	height		: 500px;
 	font-size	: 11px;
 }			
   `],
     template: `
-    <div id="chartdiv"  ></div>
+    <div id="chartdiv" style="width: 400px" ></div>
     `
 })
 export class oilChartComponent implements OnDestroy, OnInit {
@@ -32,47 +32,18 @@ export class oilChartComponent implements OnDestroy, OnInit {
     resp: any;
 
     
-    constructor(private AmCharts: AmChartsService, private _http: Http) {
-       // console.log(" Amcharts is working " + this.AmCharts);
+constructor(private AmCharts: AmChartsService, private _http: Http) {
 Observable.interval(1000).flatMap(() => {
           return this._http.get('http://nextapi-xto.azurewebsites.net/api/RodPumpDemo/GetRodPumpCosmo')
           })
           .subscribe((response)=>{
              this.jsonlist = response.json();
-//console.log(response);
-                this.datalist = this.jsonlist[0];
-          //      this.pumpStatusBoolean = (this.datalist.pumpstatus == "ON") ? true : false;
-          //   this.tanklevelhisp = this.jsonlist[0].tanklevelhisp;
-          //  this.tanklevelhihisp = this.jsonlist[0].tanklevelhihisp;
-         //   console.log("working data list is " + this.datalist);    
+             this.datalist = this.jsonlist[0];
     }
     }
   
   
-     ngOnInit() { 
-
-
-       /* Observable code
-      Observable.interval(2000).flatMap(() => {
-          return this._http.get('https://nextapi-xto.azurewebsites.net/api/RodPumpDemo/GetRodPumpCosmo')
-          })
-          .subscribe((response)=>{
-           this.jsonlist = response.json();  
-           this.datalist = this.jsonlist[0];
-           this.tankLevelValue = this.jsonlist[0].tanklevel; 
-           
-        });*/ 
-    
-  
-    /**/
-
-   // */
- //   let chartData = [{"category":"Oil Level in the Tank", "value1": 55 /*this.tankLevelValue*/, "value2":70}];
-/* this._http.get('https://nextapi-xto.azurewebsites.net/api/RodPumpDemo/GetRodPumpCosmo')
-              .map( response => response.json())
-              .subscribe(resp => this.resp = resp);
- 
- console.log("this.resp " + this.resp);  */
+ngOnInit() { 
 
  this.charts = this.AmCharts.makeChart("chartdiv", {
     "type": "serial",
@@ -120,8 +91,7 @@ Observable.interval(1000).flatMap(() => {
 });
 
 /* Update chart for every 2sec */
-
- this.timer = setInterval(() => {
+    this.timer = setInterval(() => {
       // This must be called when making any changes to the chart
       this.AmCharts.updateChart(this.charts, () => {
         this.charts.dataProvider = this.generateChartData();
@@ -129,33 +99,11 @@ Observable.interval(1000).flatMap(() => {
     }, 1000);
 }
 
-/*
-getObservableData(){
-  return Observable.interval(2000).flatMap(
-          () => this._http.get('https://nextapi-xto.azurewebsites.net/api/RodPumpDemo/GetRodPumpCosmo')
-                           .map( res => res.json())               )
-}
-*/
-generateChartData(){
-  // console.log("at oninit jsonlist is" + this.datalist.tanklevel);
-/*
-         this.getObservableData()
-                      .subscribe(
-                                  (data)=> { /* this.datalist = JSON.stringify(data) ; */ 
-                                    /*console.log("this.data is " + this.data); }
-                                );
-*/
-        // console.log("Data list is " + this.datalist);
-   /* chart data generation code */     
+generateChartData(){     
      let chartData: any= [];
-    // let  tankLevelVal : any =  this.datalist.tanklevel;
-    
      chartData.push({"category":"Oil Level in the Tank", "value1": this.jsonlist ? this.jsonlist[0].tanklevel : null ,"value2":70 });
-   // console.log("chartdata is " + JSON.stringify(chartData));
-          return chartData;
-
+     return chartData;
    };
-
 
 ngOnDestroy() {
       clearInterval(this.timer);
@@ -163,18 +111,3 @@ ngOnDestroy() {
 }
 
 }
-
-
-
-
-/*
-@NgModule({
-  imports:      [BrowserModule, ChartModule, HttpModule],
-  declarations: [AppComponent],
-  bootstrap:    [AppComponent]
-})
-class AppModule { }
-
-
-platformBrowserDynamic().bootstrapModule(AppModule);
-*/

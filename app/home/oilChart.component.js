@@ -17,40 +17,16 @@ var oilChartComponent = (function () {
         var _this = this;
         this.AmCharts = AmCharts;
         this._http = _http;
-        // console.log(" Amcharts is working " + this.AmCharts);
         Rx_1.Observable.interval(1000).flatMap(function () {
             return _this._http.get('http://nextapi-xto.azurewebsites.net/api/RodPumpDemo/GetRodPumpCosmo');
         })
             .subscribe(function (response) {
             _this.jsonlist = response.json();
-            //console.log(response);
             _this.datalist = _this.jsonlist[0];
-            //      this.pumpStatusBoolean = (this.datalist.pumpstatus == "ON") ? true : false;
-            //   this.tanklevelhisp = this.jsonlist[0].tanklevelhisp;
-            //  this.tanklevelhihisp = this.jsonlist[0].tanklevelhihisp;
-            //   console.log("working data list is " + this.datalist);    
         });
     }
     oilChartComponent.prototype.ngOnInit = function () {
-        /* Observable code
-       Observable.interval(2000).flatMap(() => {
-           return this._http.get('https://nextapi-xto.azurewebsites.net/api/RodPumpDemo/GetRodPumpCosmo')
-           })
-           .subscribe((response)=>{
-            this.jsonlist = response.json();
-            this.datalist = this.jsonlist[0];
-            this.tankLevelValue = this.jsonlist[0].tanklevel;
-            
-         });*/
         var _this = this;
-        /**/
-        // */
-        //   let chartData = [{"category":"Oil Level in the Tank", "value1": 55 /*this.tankLevelValue*/, "value2":70}];
-        /* this._http.get('https://nextapi-xto.azurewebsites.net/api/RodPumpDemo/GetRodPumpCosmo')
-                      .map( response => response.json())
-                      .subscribe(resp => this.resp = resp);
-         
-         console.log("this.resp " + this.resp);  */
         this.charts = this.AmCharts.makeChart("chartdiv", {
             "type": "serial",
             "depth3D": 100,
@@ -102,28 +78,9 @@ var oilChartComponent = (function () {
             });
         }, 1000);
     };
-    /*
-    getObservableData(){
-      return Observable.interval(2000).flatMap(
-              () => this._http.get('https://nextapi-xto.azurewebsites.net/api/RodPumpDemo/GetRodPumpCosmo')
-                               .map( res => res.json())               )
-    }
-    */
     oilChartComponent.prototype.generateChartData = function () {
-        // console.log("at oninit jsonlist is" + this.datalist.tanklevel);
-        /*
-                 this.getObservableData()
-                              .subscribe(
-                                          (data)=> { /* this.datalist = JSON.stringify(data) ; */
-        /*console.log("this.data is " + this.data); }
-    );
-*/
-        // console.log("Data list is " + this.datalist);
-        /* chart data generation code */
         var chartData = [];
-        // let  tankLevelVal : any =  this.datalist.tanklevel;
         chartData.push({ "category": "Oil Level in the Tank", "value1": this.jsonlist ? this.jsonlist[0].tanklevel : null, "value2": 70 });
-        // console.log("chartdata is " + JSON.stringify(chartData));
         return chartData;
     };
     ;
@@ -134,23 +91,12 @@ var oilChartComponent = (function () {
     oilChartComponent = __decorate([
         core_1.Component({
             selector: 'oil-amchart',
-            styles: ["\n      #chartdiv {\n        background: #3f3f4f;color:#ffffff;\t\n\twidth\t\t: 100%;\n\theight\t\t: 500px;\n\tfont-size\t: 11px;\n}\t\t\t\n  "],
-            template: "\n    <div id=\"chartdiv\"  ></div>\n    "
+            styles: ["\n      #chartdiv {\n      /*  background: #3f3f4f;color:#ffffff;\t*/\n\twidth\t\t: 100px;\n\theight\t\t: 500px;\n\tfont-size\t: 11px;\n}\t\t\t\n  "],
+            template: "\n    <div id=\"chartdiv\" style=\"width: 400px\" ></div>\n    "
         }), 
         __metadata('design:paramtypes', [amcharts3_angular_1.AmChartsService, http_1.Http])
     ], oilChartComponent);
     return oilChartComponent;
 }());
 exports.oilChartComponent = oilChartComponent;
-/*
-@NgModule({
-  imports:      [BrowserModule, ChartModule, HttpModule],
-  declarations: [AppComponent],
-  bootstrap:    [AppComponent]
-})
-class AppModule { }
-
-
-platformBrowserDynamic().bootstrapModule(AppModule);
-*/ 
 //# sourceMappingURL=oilChart.component.js.map
