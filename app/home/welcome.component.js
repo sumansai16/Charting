@@ -28,7 +28,7 @@ var WelcomeComponent = (function () {
              console.log("json list is " + this.jsonlist);
         });
         */
-        Rx_1.Observable.interval(1000).flatMap(function () {
+        Rx_1.Observable.interval(100).flatMap(function () {
             return _this._http.get('http://nextapi-xto.azurewebsites.net/api/RodPumpDemo/GetRodPumpCosmo');
         })
             .subscribe(function (response) {
@@ -36,8 +36,10 @@ var WelcomeComponent = (function () {
             //console.log(response);
             _this.datalist = _this.jsonlist[0];
             _this.pumpStatusBoolean = (_this.datalist.pumpstatus == "ON") ? true : false;
+            _this.pumpstatus = _this.datalist.pumpstatus;
             _this.tanklevelhisp = _this.jsonlist[0].tanklevelhisp;
             _this.tanklevelhihisp = _this.jsonlist[0].tanklevelhihisp;
+            _this.plcstate = _this.jsonlist[0].plcstate;
             //console.log("json list is " + this.jsonlist);
             //  this.cb1 = (this.jsonlist[0].pumpstatus == 'ON') ? true : false;
             //this.flowratesp = this.jsonlist[0].flowratesp;
@@ -103,13 +105,13 @@ this._http.request('http://nextapi-xto.azurewebsites.net/api/RodPumpDemo/GetRodP
         headers.append('Content-Type', 'application/json');
         // let data = {flowratesp,tanklevelsp};
         //let data = {"tankLevelHigh":tankLevelHigh, "tankLevelHighHigh": tankLevelHighHigh};
-        var data = { "tanklevelhisp": tankLevelHigh, "tanklevelhihisp": tankLevelHighHigh };
+        var data = { "pumpstatus": this.pumpstatus, "tanklevelhisp": tankLevelHigh, "tanklevelhihisp": tankLevelHighHigh };
         this.editMode = false;
         var options = new http_1.RequestOptions({ headers: headers });
         return this._http.post('https://nextapi-xto.azurewebsites.net/api/RodPumpDemo/PostSPs', data, options)
             .subscribe(function (response) {
-            //  console.log(data);
-            //  console.log(response);
+            console.log(data);
+            console.log(response);
             //this.modal.close();
         });
     };
@@ -117,6 +119,15 @@ this._http.request('http://nextapi-xto.azurewebsites.net/api/RodPumpDemo/GetRodP
     WelcomeComponent.prototype.pumpBooleanChange = function (pumpStatusBoolean) {
         this.datalist.pumpstatus = (pumpStatusBoolean == true) ? 'ON' : 'OFF';
         console.log(this.datalist.pumpstatus);
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        var setPointData = { "pumpstatus": this.datalist.pumpstatus, "tanklevelhisp": this.tanklevelhisp, "tanklevelhihisp": this.tanklevelhihisp };
+        //console.log(JSON.stringify(setPointData));
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this._http.post('https://nextapi-xto.azurewebsites.net/api/RodPumpDemo/PostSPs', setPointData, options)
+            .subscribe(function (response) {
+            console.log("Set points submitted successfully");
+        });
     };
     // User Email and Phone no details submission on pageload
     WelcomeComponent.prototype.userDetailsForm = function (emailId, phoneNo) {
@@ -145,6 +156,35 @@ this._http.request('http://nextapi-xto.azurewebsites.net/api/RodPumpDemo/GetRodP
          return this.modal.open();
     }
     */
+    WelcomeComponent.prototype.configureHp = function () {
+        // this.editMode = true;
+        this.tanklevelhisp1 = this.jsonlist[0].tanklevelhisp;
+        this.tanklevelhihisp1 = this.jsonlist[0].tanklevelhihisp;
+        this.pumpstatus1 = (this.jsonlist[0].pumpstatus = "ON") ? true : false;
+        ;
+        this.modalSetHp.open();
+    };
+    /* Updates API from Edit Glyphicon xs resolution */
+    WelcomeComponent.prototype.updateSetPoints = function (tankLevelHighInput, tankLevelHighHighInput, pumpStatusInput) {
+        //url : string = 'http://nextapi-xto.azurewebsites.net/api/RodPumpDemo/PostSPs'
+        var _this = this;
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        // let data = {flowratesp,tanklevelsp};
+        //let data = {"tankLevelHigh":tankLevelHigh, "tankLevelHighHigh": tankLevelHighHigh};
+        var data = { "pumpstatus": (pumpStatusInput = true) ? "ON" : "OFF", "tanklevelhisp": tankLevelHighInput, "tanklevelhihisp": tankLevelHighHighInput };
+        //this.editMode = false;
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this._http.post('https://nextapi-xto.azurewebsites.net/api/RodPumpDemo/PostSPs', data, options)
+            .subscribe(function (response) {
+            console.log(JSON.stringify(data));
+            console.log(response);
+            _this.modalSetHp.close();
+        });
+    };
+    WelcomeComponent.prototype.pumpstatus1Change = function (pumpStatusInput) {
+        this.pumpstatus1 = (pumpStatusInput = true) ? "ON" : "OFF";
+    };
     WelcomeComponent.prototype.ngOnInit = function () {
         this.modal.open();
     };
@@ -152,6 +192,10 @@ this._http.request('http://nextapi-xto.azurewebsites.net/api/RodPumpDemo/GetRodP
         core_1.ViewChild('modal'), 
         __metadata('design:type', ng2_bs3_modal_1.ModalComponent)
     ], WelcomeComponent.prototype, "modal", void 0);
+    __decorate([
+        core_1.ViewChild('modalSetHp'), 
+        __metadata('design:type', ng2_bs3_modal_1.ModalComponent)
+    ], WelcomeComponent.prototype, "modalSetHp", void 0);
     WelcomeComponent = __decorate([
         core_1.Component({
             selector: 'welcome',

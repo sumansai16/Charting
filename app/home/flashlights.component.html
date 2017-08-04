@@ -1,88 +1,18 @@
-<!-- Product Detail Component HTML
-<div class='panel panel-primary' *ngIf='product'>
-    <div class='panel-heading' style='font-size:large'>
-        {{pageTitle + ': ' + product.productName }}
-    </div>
-
-    <div class='panel-body'>
-        <div class='row'>
-            <div class='col-md-6'>
-                <div class='row'>
-                    <div class='col-md-3'>Name:</div>
-                    <div class='col-md-6'>{{product.productName}}</div>
-                </div>
-                <div class='row'>
-                    <div class='col-md-3'>Code:</div>
-                    <div class='col-md-6'>{{product.productCode}}</div>
-                </div>
-                <div class='row'>
-                    <div class='col-md-3'>Description:</div>
-                    <div class='col-md-6'>{{product.description}}</div>
-                </div>
-                <div class='row'>
-                    <div class='col-md-3'>Availability:</div>
-                    <div class='col-md-6'>{{product.releaseDate}}</div>
-                </div>
-                <div class='row'>
-                    <div class='col-md-3'>Price:</div>
-                    <div class='col-md-6'>{{product.price|currency:'USD':true}}</div>
-                </div>
-                <div class='row'>
-                    <div class='col-md-3'>5 Star Rating:</div>
-                    <div class='col-md-6'>
-                        <ai-star [rating]='product.starRating'
-                                (ratingClicked)='onRatingClicked($event)'>
-                        </ai-star>
-                    </div>
-                </div>
+<!-- PLC State :  (plcstate = 1 | plcstate = 2 | plcstate = 3 | plcstate = 4 | plcstate = 5  )?{{plcstate}}: "Incompatible Data" ; -->
+<div [ngSwitch]="plcstate">
+ <div class="led-box" > <div *ngSwitchCase="'1'" [ngClass] = "{'led-red' : false, 'led-red-steady' : true , 'led-green-steady' : false, 'led-green-flashing' : false, 'led-yellow-steady' : false, 'led-yellow': false }"> </div> </div>
+ <div class="led-box"> <div *ngSwitchCase="'2'" [ngClass] = "{'led-red' : false, 'led-red-steady' : false , 'led-green-steady' : false, 'led-green-flashing' : true, 'led-yellow-steady' : false, 'led-yellow': false }"> </div> </div>
+ <div class="led-box"> <div *ngSwitchCase="'3'" [ngClass] = "{'led-red' : false, 'led-red-steady' : false , 'led-green-steady' : true, 'led-green-flashing' : false, 'led-yellow-steady' : false, 'led-yellow': false }"> </div> </div>
+<div *ngSwitchCase="'4'">
+    <div class="row">
+            <div class="led-box col-xs-2" >
+            <div [ngClass] = "{'led-red' : false, 'led-red-steady' : false , 'led-green-steady' : true, 'led-green-flashing' : false, 'led-yellow-steady' : false, 'led-yellow': false }"> </div> 
             </div>
-
-            <div class='col-md-6'>
-                <img class='center-block img-responsive' 
-                     [style.width.px]='200' 
-                     [style.margin.px]='2' 
-                     [src]='product.imageUrl'
-                     [title]='product.productName'>
-            </div>
-        </div>
+            <div class="led-box col-xs-1" >
+            <div [ngClass] = "{'led-red' : false, 'led-red-steady' : false , 'led-green-steady' : false, 'led-green-flashing' : false, 'led-yellow-steady' : true, 'led-yellow': false }"> </div> 
+     </div>
     </div>
-
-    <div class='panel-footer'>
-        <a class='btn btn-default' (click)='onBack()' style='width:80px'>
-            <i class='glyphicon glyphicon-chevron-left'></i> Back
-        </a>
-    </div>
-</div>
-
--->
-
-
-<!-- Lights Component HTML -->
-
-<div class="container">
-  <div class="led-box">
-    <div class="led-green-steady"></div>
-    <p>Green Steady</p>
-  </div>
-  <div class="led-box">
-    <div class="led-green-flashing"></div>
-    <p>Green Flashing</p>
-  </div>
-  <div class="led-box">
-    <div class="led-yellow-steady"></div>
-    <p>Yellow Steady</p>
-  </div>
-	<div class="led-box">
-    <div class="led-yellow"></div>
-    <p>Yellow Flashing</p>
-  </div>
-  <div class="led-box">
-    <div class="led-red-steady"></div>
-    <p>Red Steady</p>
-  </div>
-  <div class="led-box">
-    <div class="led-red"></div>
-    <p>Red Flashing</p>
-  </div>
-  
+ </div>    
+ <div class="led-box"> <div *ngSwitchCase="'5'" [ngClass] = "{'led-red' : false, 'led-red-steady' : false , 'led-green-steady' : false, 'led-green-flashing' : false, 'led-yellow-steady' : false, 'led-yellow': true }"> </div> </div>
+ <div class="led-box"> <div *ngSwitchDefault [ngClass] = "{'led-red' : false, 'led-red-steady' : false , 'led-green-steady' : false, 'led-green-flashing' : false, 'led-yellow-steady' : false, 'led-yellow': false }"> </div> </div>
 </div>

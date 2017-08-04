@@ -19,7 +19,8 @@ var hichart_component_1 = require('./charts/hichart.component');
 var oilChart_component_1 = require('./home/oilChart.component');
 var ng2_bs3_modal_1 = require('ng2-bs3-modal/ng2-bs3-modal');
 //import { UiSwitchModule } from '@youmesoft/ng2-ui-switch';
-var product_module_1 = require('./products/product.module');
+//import { SwitchComponent } from 'angular2-bootstrap-switch/components';
+// import {ModalComponent} from 'ng2-bs3-modal/ng2-bs3-modal';
 var angular2_highcharts_1 = require('angular2-highcharts');
 var amcharts3_angular_1 = require("@amcharts/amcharts3-angular");
 var flashlights_component_1 = require('./home/flashlights.component');
@@ -33,7 +34,7 @@ var AppModule = (function () {
                 http_1.HttpModule,
                 app_routing_1.routing,
                 forms_1.FormsModule,
-                product_module_1.ProductModule, ng2_bs3_modal_1.Ng2Bs3ModalModule,
+                ng2_bs3_modal_1.Ng2Bs3ModalModule,
                 angular2_highcharts_1.ChartModule.forRoot(require('highcharts'), amcharts3_angular_1.AmChartsModule)
             ],
             declarations: [

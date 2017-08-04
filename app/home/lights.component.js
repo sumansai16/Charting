@@ -9,46 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-//import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
+var http_1 = require('@angular/http');
+var Rx_1 = require('rxjs/Rx');
 var LightsComponent = (function () {
-    function LightsComponent() {
+    function LightsComponent(_http) {
+        this._http = _http;
         this.redL = false;
         this.greenL = false;
         this.green_flash = false;
         this.amberL = false;
         this.amber_flash = false;
     }
-    LightsComponent.prototype.if = function (sim_status) {
-        if (sim_status === void 0) { sim_status = 1; }
-        this.redL = false;
-        this.greenL = false;
-        this.amberL = false;
-        this.amber_flash = false;
-        this.green_flash = true;
-    };
-    LightsComponent.prototype.elseif = function (sim_status) {
-        if (sim_status === void 0) { sim_status = 3; }
-        this.redL = false;
-        this.greenL = true;
-        this.amberL = false;
-        this.amber_flash = false;
-        this.green_flash = false;
-    };
-    LightsComponent.prototype.elseif = function (sim_status) {
-        if (sim_status === void 0) { sim_status = 5; }
-        this.redL = false;
-        this.greenL = true;
-        this.amberL = false;
-        this.amber_flash = true;
-        this.green_flash = false;
-    };
-    LightsComponent.prototype.elseif = function (sim_status) {
-        if (sim_status === void 0) { sim_status = 6; }
-        this.redL = false;
-        this.greenL = false;
-        this.amberL = true;
-        this.amber_flash = false;
-        this.green_flash = false;
+    LightsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        Rx_1.Observable.interval(1000).flatMap(function () {
+            return _this._http.get('http://nextapi-xto.azurewebsites.net/api/RodPumpDemo/GetRodPumpCosmo');
+        })
+            .subscribe(function (response) {
+            _this.jsonlist = response.json();
+            //console.log(response);
+            _this.datalist = _this.jsonlist[0];
+            _this.plcstate = _this.datalist.plcstate;
+        });
     };
     LightsComponent = __decorate([
         core_1.Component({
@@ -56,9 +38,40 @@ var LightsComponent = (function () {
             templateUrl: 'app/home/light.component.html',
             styleUrls: ['app/home/light.component.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], LightsComponent);
     return LightsComponent;
 }());
 exports.LightsComponent = LightsComponent;
+/*
+if(this.plcstate = 1){
+this.redL = false;
+this.greenL = false;
+this.amberL = false;
+this.amber_flash = false;
+this.green_flash = true;
+    
+} elseif(sim_status = 3){
+this.redL = false;
+this.greenL = true;
+this.amberL = false;
+this.amber_flash = false;
+this.green_flash = false;
+}
+elseif(sim_status = 5){
+this.redL = false;
+this.greenL = true;
+this.amberL = false;
+this.amber_flash = true;
+this.green_flash = false;
+}
+elseif(sim_status = 6){
+this.redL = false;
+this.greenL = false;
+this.amberL = true;
+this.amber_flash = false;
+this.green_flash = false;
+}
+
+*/
 //# sourceMappingURL=lights.component.js.map

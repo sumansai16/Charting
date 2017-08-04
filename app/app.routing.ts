@@ -8,9 +8,7 @@ import {oilChartComponent} from './home/oilChart.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'welcome', pathMatch: 'full'},
-  { path: 'welcome', component: WelcomeComponent },
-  { path: 'charts', component: HichartComponent },
-  { path: 'charts2', component: oilChartComponent }
+  { path: 'welcome', component: WelcomeComponent }
 
 ];
 

@@ -17,7 +17,7 @@ var oilChartComponent = (function () {
         var _this = this;
         this.AmCharts = AmCharts;
         this._http = _http;
-        Rx_1.Observable.interval(1000).flatMap(function () {
+        Rx_1.Observable.interval(100).flatMap(function () {
             return _this._http.get('http://nextapi-xto.azurewebsites.net/api/RodPumpDemo/GetRodPumpCosmo');
         })
             .subscribe(function (response) {
@@ -35,7 +35,9 @@ var oilChartComponent = (function () {
             "dataProvider": this.generateChartData(),
             "valueAxes": [{
                     "stackType": "100%",
-                    "gridAlpha": 0
+                    "gridAlpha": 0,
+                    "minimum": 0,
+                    "maximum": 193
                 }],
             "graphs": [{
                     "type": "column",
@@ -45,9 +47,11 @@ var oilChartComponent = (function () {
                     "lineThickness": 2,
                     "lineAlpha": 0.5,
                     "lineColor": "#FFFFFF",
-                    "fillColors": "#8d003b",
+                    "fillColors": "green",
                     "fillAlphas": 0.8,
-                    "valueField": "value1"
+                    "valueField": "value1",
+                    "autoGridCount": false,
+                    "max": 192
                 }, {
                     "type": "column",
                     "topRadius": 1,
@@ -58,7 +62,7 @@ var oilChartComponent = (function () {
                     "lineColor": "#cdcdcd",
                     "fillColors": "#cdcdcd",
                     "fillAlphas": 0.5,
-                    "valueField": "value2"
+                    "valueField": "value2",
                 }],
             "responsive": {
                 "enabled": true
@@ -66,21 +70,28 @@ var oilChartComponent = (function () {
             "categoryField": "category",
             "categoryAxis": {
                 "axisAlpha": 0,
-                "labelOffset": 40,
+                "labelOffset": 20,
                 "gridAlpha": 0
             }
         });
-        /* Update chart for every 2sec */
+        /*
+        this.charts.chartBackground.css({
+        background:'transaparent !important'
+        
+        });
+        */
+        /* Update chart for every 1sec */
         this.timer = setInterval(function () {
             // This must be called when making any changes to the chart
             _this.AmCharts.updateChart(_this.charts, function () {
                 _this.charts.dataProvider = _this.generateChartData();
             });
-        }, 1000);
+        }, 100);
     };
     oilChartComponent.prototype.generateChartData = function () {
         var chartData = [];
-        chartData.push({ "category": "Oil Level in the Tank", "value1": this.jsonlist ? this.jsonlist[0].tanklevel : null, "value2": 70 });
+        chartData.push({ "category": "Oil Level in the Tank", "value1": this.jsonlist ? this.jsonlist[0].tanklevel : null, "value2": 50 });
+        //  chartData.push({"category":"Oil Level in the Tank", "value1": 193 /*,"value2":70  */  });
         return chartData;
     };
     ;
@@ -91,8 +102,8 @@ var oilChartComponent = (function () {
     oilChartComponent = __decorate([
         core_1.Component({
             selector: 'oil-amchart',
-            styles: ["\n      #chartdiv {\n      /*  background: #3f3f4f;color:#ffffff;\t*/\n\twidth\t\t: 100px;\n\theight\t\t: 500px;\n\tfont-size\t: 11px;\n}\t\t\t\n  "],
-            template: "\n    <div id=\"chartdiv\" style=\"width: 400px\" ></div>\n    "
+            styles: ["\n      #chartdiv {\n\t  width: 300px;\n    min-width: 150px;\n    font-size: 11px;\n    height: 275px;\n    max-height: 500px;\n    min-height:200px;\n}\t\t\n  "],
+            template: "\n    <div id=\"chartdiv\"></div>\n    "
         }), 
         __metadata('design:paramtypes', [amcharts3_angular_1.AmChartsService, http_1.Http])
     ], oilChartComponent);

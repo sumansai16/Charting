@@ -1,5 +1,5 @@
 .container {
-	background-size: cover;
+   background-size: initial;
   background: rgb(226,226,226); /* Old browsers */
   background: -moz-linear-gradient(top,  rgba(226,226,226,1) 0%, rgba(219,219,219,1) 50%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(226,226,226,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(254,254,254,1))); /* Chrome,Safari4+ */
@@ -13,7 +13,7 @@
 
 .led-box {
   height: 30px;
-  width: 25%;
+  width: 5%;
   margin: 10px 0;
   float: left;
 }
@@ -104,32 +104,6 @@
     to { background-color: #FF0; }
 }
 
-.led-green-steady {
-  margin: 0 auto;
-  width: 24px;
-  height: 24px;
-  background-color: #ABFF00;
-  border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px, #89FF00 0 2px 12px;
-}
-
-.led-yellow-steady {
-  margin: 0 auto;
-  width: 24px;
-  height: 24px;
-  background-color:#FF0;;
-  border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #006 0 -1px 9px, rgba(0, 0, 0, 0.2) 0 2px 14px;
-}
-.led-red-steady{
-margin: 0 auto;
-  width: 24px;
-  height: 24px;
-  background-color:#F00;
-  border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #006 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 14px;
-}
-
 .led-green-flashing{
  margin: 0 auto;
   width: 24px;
@@ -169,3 +143,31 @@ margin: 0 auto;
     50% { background-color: #7FFF00	; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #00FF7F		 0 -1px 9px,#00FF00 0 2px 0; }
     to { background-color: #00FF00; }
 }
+
+.led-green-steady {
+  margin: 0 auto;
+  width: 24px;
+  height: 24px;
+  background-color: #ABFF00;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px, #89FF00 0 2px 12px;
+}
+
+.led-yellow-steady {
+  margin: 0 auto;
+  width: 24px;
+  height: 24px;
+  background-color:#FF0;;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #006 0 -1px 9px, rgba(0, 0, 0, 0.2) 0 2px 14px;
+}
+.led-red-steady{
+margin: 0 auto;
+  width: 24px;
+  height: 24px;
+  background-color:#F00;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #006 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 14px;
+}
+
+    

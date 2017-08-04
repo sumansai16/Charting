@@ -12,14 +12,16 @@ import { AmChartsService, AmChartsModule } from "@amcharts/amcharts3-angular";
     selector: 'oil-amchart',
     styles: [`
       #chartdiv {
-      /*  background: #3f3f4f;color:#ffffff;	*/
-	width		: 100px;
-	height		: 500px;
-	font-size	: 11px;
-}			
+	  width: 300px;
+    min-width: 150px;
+    font-size: 11px;
+    height: 275px;
+    max-height: 500px;
+    min-height:200px;
+}		
   `],
     template: `
-    <div id="chartdiv" style="width: 400px" ></div>
+    <div id="chartdiv"></div>
     `
 })
 export class oilChartComponent implements OnDestroy, OnInit {
@@ -33,7 +35,7 @@ export class oilChartComponent implements OnDestroy, OnInit {
 
     
 constructor(private AmCharts: AmChartsService, private _http: Http) {
-Observable.interval(1000).flatMap(() => {
+Observable.interval(100).flatMap(() => {
           return this._http.get('http://nextapi-xto.azurewebsites.net/api/RodPumpDemo/GetRodPumpCosmo')
           })
           .subscribe((response)=>{
@@ -49,12 +51,15 @@ ngOnInit() {
     "type": "serial",
     "depth3D":100,
     "angle":30,
-    
-    "pathToImages": "https://www.amcharts.com/lib/3/images/",
+  "pathToImages": "https://www.amcharts.com/lib/3/images/",
     "dataProvider": this.generateChartData(),
     "valueAxes": [{
         "stackType": "100%",
-        "gridAlpha": 0
+        "gridAlpha": 0,
+        "minimum": 0,
+        "maximum": 193
+        //"maximum":193
+       // "strictMinMax":true
     }],
     "graphs": [{
         "type":"column",
@@ -64,9 +69,11 @@ ngOnInit() {
         "lineThickness": 2,
         "lineAlpha": 0.5,
         "lineColor": "#FFFFFF",
-        "fillColors": "#8d003b",
+        "fillColors": "green",
         "fillAlphas": 0.8,
-        "valueField": "value1"
+        "valueField": "value1",
+        "autoGridCount" : false,
+        "max":192
     },{
         "type":"column",
         "topRadius":1,
@@ -77,7 +84,7 @@ ngOnInit() {
         "lineColor": "#cdcdcd",
         "fillColors": "#cdcdcd",
         "fillAlphas": 0.5,
-        "valueField": "value2"
+        "valueField": "value2",
     }],
     "responsive": {
       "enabled" : true
@@ -85,23 +92,30 @@ ngOnInit() {
     "categoryField": "category",
     "categoryAxis": {
         "axisAlpha": 0,
-        "labelOffset":40,
+        "labelOffset":20,
         "gridAlpha":0
     }
 });
+/*
+this.charts.chartBackground.css({
+background:'transaparent !important'
 
-/* Update chart for every 2sec */
+});
+*/
+/* Update chart for every 1sec */
     this.timer = setInterval(() => {
       // This must be called when making any changes to the chart
       this.AmCharts.updateChart(this.charts, () => {
         this.charts.dataProvider = this.generateChartData();
+       
       });
-    }, 1000);
+    }, 100);
 }
 
 generateChartData(){     
      let chartData: any= [];
-     chartData.push({"category":"Oil Level in the Tank", "value1": this.jsonlist ? this.jsonlist[0].tanklevel : null ,"value2":70 });
+     chartData.push({"category":"Oil Level in the Tank", "value1": this.jsonlist ? this.jsonlist[0].tanklevel : null ,"value2": 50 });
+   //  chartData.push({"category":"Oil Level in the Tank", "value1": 193 /*,"value2":70  */  });
      return chartData;
    };
 

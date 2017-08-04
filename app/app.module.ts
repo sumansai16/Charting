@@ -10,8 +10,9 @@ import { HichartComponent } from './charts/hichart.component';
 import { oilChartComponent } from './home/oilChart.component';
 import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
 //import { UiSwitchModule } from '@youmesoft/ng2-ui-switch';
+//import { SwitchComponent } from 'angular2-bootstrap-switch/components';
+// import {ModalComponent} from 'ng2-bs3-modal/ng2-bs3-modal';
 
-import { ProductModule } from './products/product.module';
 import { ChartModule } from 'angular2-highcharts';
 import { AmChartsModule, AmChartsService } from "@amcharts/amcharts3-angular";
 import { flashLightsComponent } from './home/flashlights.component';
@@ -23,7 +24,7 @@ import { flashLightsComponent } from './home/flashlights.component';
     HttpModule,
     routing,
     FormsModule,
-    ProductModule,Ng2Bs3ModalModule , /*UiSwitchModule,*/
+    Ng2Bs3ModalModule , /*UiSwitchModule,*/
     ChartModule.forRoot(require('highcharts'),
     AmChartsModule )
   ],
@@ -32,8 +33,8 @@ import { flashLightsComponent } from './home/flashlights.component';
     WelcomeComponent,
     HichartComponent ,
     oilChartComponent,
-    flashLightsComponent  
-  ],
+    flashLightsComponent
+      ],
   providers:[ AmChartsService ],
   bootstrap: [ AppComponent ]
 })
