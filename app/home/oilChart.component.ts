@@ -56,8 +56,9 @@ ngOnInit() {
     "valueAxes": [{
         "stackType": "100%",
         "gridAlpha": 0,
-        "minimum": 0,
-        "maximum": 193
+
+        min : 0,
+        max : 192
         //"maximum":193
        // "strictMinMax":true
     }],
@@ -72,9 +73,7 @@ ngOnInit() {
         "fillColors": "green",
         "fillAlphas": 0.8,
         "valueField": "value1",
-        "autoGridCount" : false,
-        "max":192
-    },{
+        },{
         "type":"column",
         "topRadius":1,
         "columnWidth":1 ,
@@ -91,6 +90,8 @@ ngOnInit() {
     },
     "categoryField": "category",
     "categoryAxis": {
+        autoGridCount : false,
+        gridCount : 10,
         "axisAlpha": 0,
         "labelOffset":20,
         "gridAlpha":0
@@ -114,8 +115,12 @@ background:'transaparent !important'
 
 generateChartData(){     
      let chartData: any= [];
-     chartData.push({"category":"Oil Level in the Tank", "value1": this.jsonlist ? this.jsonlist[0].tanklevel : null ,"value2": 50 });
-   //  chartData.push({"category":"Oil Level in the Tank", "value1": 193 /*,"value2":70  */  });
+    let tanklevelVal1 : any;
+    let tanklevelVal2 : any;
+    tanklevelVal1 =  this.jsonlist ? this.jsonlist[0].tanklevel : 0 ;
+    tanklevelVal2 = ( tanklevelVal1 > 192)? 0 : (192 - tanklevelVal1) ;
+     chartData.push({"category":"Oil Level in the Tank", "value1": tanklevelVal1 ,"value2": tanklevelVal2 });
+     // chartData.push({"category":"Oil Level in the Tank", "value1": 295 ,"value2":193   });
      return chartData;
    };
 

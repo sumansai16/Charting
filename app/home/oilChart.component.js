@@ -36,8 +36,8 @@ var oilChartComponent = (function () {
             "valueAxes": [{
                     "stackType": "100%",
                     "gridAlpha": 0,
-                    "minimum": 0,
-                    "maximum": 193
+                    min: 0,
+                    max: 192
                 }],
             "graphs": [{
                     "type": "column",
@@ -50,8 +50,6 @@ var oilChartComponent = (function () {
                     "fillColors": "green",
                     "fillAlphas": 0.8,
                     "valueField": "value1",
-                    "autoGridCount": false,
-                    "max": 192
                 }, {
                     "type": "column",
                     "topRadius": 1,
@@ -69,6 +67,8 @@ var oilChartComponent = (function () {
             },
             "categoryField": "category",
             "categoryAxis": {
+                autoGridCount: false,
+                gridCount: 10,
                 "axisAlpha": 0,
                 "labelOffset": 20,
                 "gridAlpha": 0
@@ -90,8 +90,12 @@ var oilChartComponent = (function () {
     };
     oilChartComponent.prototype.generateChartData = function () {
         var chartData = [];
-        chartData.push({ "category": "Oil Level in the Tank", "value1": this.jsonlist ? this.jsonlist[0].tanklevel : null, "value2": 50 });
-        //  chartData.push({"category":"Oil Level in the Tank", "value1": 193 /*,"value2":70  */  });
+        var tanklevelVal1;
+        var tanklevelVal2;
+        tanklevelVal1 = this.jsonlist ? this.jsonlist[0].tanklevel : 0;
+        tanklevelVal2 = (tanklevelVal1 > 192) ? 0 : (192 - tanklevelVal1);
+        chartData.push({ "category": "Oil Level in the Tank", "value1": tanklevelVal1, "value2": tanklevelVal2 });
+        // chartData.push({"category":"Oil Level in the Tank", "value1": 295 ,"value2":193   });
         return chartData;
     };
     ;
