@@ -301,9 +301,13 @@ background:'transaparent !important'
 }
 
 generateChartData(){     
-     let chartData: any= [];
-     chartData.push({"category":"Oil Level in the Tank", "value1": this.jsonlist ? this.jsonlist[0].tanklevel : null ,"value2": 50 });
-   //  chartData.push({"category":"Oil Level in the Tank", "value1": 193 /*,"value2":70  */  });
+   let chartData: any= [];
+    let tanklevelVal1 : any;
+    let tanklevelVal2 : any;
+    tanklevelVal1 =  this.jsonlist ? this.jsonlist[0].tanklevel : 0 ;
+    tanklevelVal2 = ( tanklevelVal1 > 192)? 0 : (192 - tanklevelVal1) ;
+     chartData.push({"category":"Oil Level in the Tank", "value1": tanklevelVal1 ,"value2": tanklevelVal2 });
+     // chartData.push({"category":"Oil Level in the Tank", "value1": 295 ,"value2":193   });
      return chartData;
    };
 
