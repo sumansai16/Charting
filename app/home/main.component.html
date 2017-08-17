@@ -1,0 +1,200 @@
+<div>
+    <div class="nav-bar">
+        <div class="panel-heading">
+            {{pageTitle}}
+        </div>
+        <!--  <button type="button" class="btn btn-default" (click)="modal.open()">Set Points!</button> 
+
+<button type="button" class="btn btn-default" (click)="openLoginDialog()">Configure Set Points!</button>
+-->
+        <modal #modal class=' modal-md'>
+            <modal-header [show-close]="true">
+                <h4 class="modal-title">User Information:</h4>
+            </modal-header>
+            <modal-body>
+                <div class='form-group'>
+                    <label class='control-label' style="color:#333"> E-mail : </label>
+                    <!-- <input type="text" [(ngModel)] = 'flowratesp' class='form-control' style="width:80%">  -->
+                    <input type="text" #emailId class='form-control' style="width:80%">
+                </div>
+                <div class='form-group'>
+                    <label class='control-label' style="color:#333"> Phone No : </label>
+                    <!-- <input type="text" [(ngModel)] = 'tanklevelsp' class='form-control' style='width:80%'> -->
+                    <input type="text" #phoneNo class='form-control' style="width:80%">
+                </div>
+            </modal-body>
+            <modal-footer [show-default-buttons]="false">
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.dismiss()">Cancel</button>
+                <!--  <button type="button" class="btn btn-primary" (click)="updateSetPoints(flowratesp, tanklevelsp, emailId.value)">Submit</button>  -->
+                <button type="button" class="btn btn-primary" (click)="userDetailsForm( emailId.value, phoneNo.value)">Submit</button>
+            </modal-footer>
+        </modal>
+
+        <!-- SetHighPoints Small Screen Modal -->
+        <modal #modalSetHp class='modal-sm modal-md'>
+            <modal-header [show-close]="true">
+                <h4 class="modal-title">Configure:</h4>
+            </modal-header>
+            <modal-body>
+                <div class='form-group'>
+                    <label class='control-label' style="color:#333"> Tank Level High: </label>
+                    <input type="text" #highSpInput [(ngModel)]='tanklevelhisp1' class='form-control' style="width:80%">
+                    <!--  <input type="text" #emailId class='form-control' style="width:80%"> -->
+                </div>
+                <div class='form-group'>
+                    <label class='control-label' style="color:#333"> Tank Level High High : </label>
+                    <input type="text" #highHighSpInput [(ngModel)]='tanklevelhihisp1' class='form-control' style='width:80%'>
+                </div>
+                <div class="row">
+                    <div class='form-group'>
+                        <label class='control-label col-xs-9' style="color:#333">Running Status : </label>
+                        <div class='col-xs-3 col-sm-3' style="margin-top:0.8em;margin-right:0em;left:-0.5em">
+                            <div class='item pull-left'>
+                                <input #pumpStatusInput type="checkbox" id="toggle_today_summary1"  [(ngModel)]='pumpstatus1'> <!--  (click)="pumpstatus1Change(pumpStatus1) -->
+                                <div class="toggle">
+                                    <label for="toggle_today_summary1"><i></i></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </modal-body>
+            <modal-footer [show-default-buttons]="false">
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.dismiss()">Cancel</button>
+                <button type="button" class="btn btn-primary" (click)="updateSetPoints(highSpInput.value, highHighSpInput.value, pumpStatusInput.value)">Configure</button>
+                <!--  <button type="button" class="btn btn-primary" (click)="userDetailsForm( emailId.value, phoneNo.value)">Submit</button> -->
+            </modal-footer>
+        </modal>
+
+
+
+
+        <div class='container-fluid'>
+
+            <div class='row'>
+                <div class='col-xs-9 col-sm-6'>
+                    <!--<lights-component> </lights-component>-->
+
+                            <!-- Lights Component -->
+        <!-- PLC State :  (plcstate = 1 | plcstate = 2 | plcstate = 3 | plcstate = 4 | plcstate = 5  )?{{plcstate}}: "Incompatible Data" ; -->
+<div [ngSwitch]="plcstate">
+ <div class="led-box" > <div *ngSwitchCase="'1'" [ngClass] = "{'led-red' : false, 'led-red-steady' : true , 'led-green-steady' : false, 'led-green-flashing' : false, 'led-yellow-steady' : false, 'led-yellow': false }"> </div> </div>
+ <div class="led-box"> <div *ngSwitchCase="'2'" [ngClass] = "{'led-red' : false, 'led-red-steady' : false , 'led-green-steady' : false, 'led-green-flashing' : true, 'led-yellow-steady' : false, 'led-yellow': false }"> </div> </div>
+ <div class="led-box"> <div *ngSwitchCase="'3'" [ngClass] = "{'led-red' : false, 'led-red-steady' : false , 'led-green-steady' : true, 'led-green-flashing' : false, 'led-yellow-steady' : false, 'led-yellow': false }"> </div> </div>
+<div *ngSwitchCase="'4'">
+    <div class="row">
+            <div class="led-box col-xs-2" >
+            <div [ngClass] = "{'led-red' : false, 'led-red-steady' : false , 'led-green-steady' : true, 'led-green-flashing' : false, 'led-yellow-steady' : false, 'led-yellow': false }"> </div> 
+            </div>
+            <div class="led-box col-xs-1" >
+            <div [ngClass] = "{'led-red' : false, 'led-red-steady' : false , 'led-green-steady' : false, 'led-green-flashing' : false, 'led-yellow-steady' : true, 'led-yellow': false }"> </div> 
+     </div>
+    </div>
+ </div>    
+ <div class="led-box"> <div *ngSwitchCase="'5'" [ngClass] = "{'led-red' : false, 'led-red-steady' : false , 'led-green-steady' : false, 'led-green-flashing' : false, 'led-yellow-steady' : false, 'led-yellow': true }"> </div> </div>
+ <div class="led-box"> <div *ngSwitchDefault [ngClass] = "{'led-red' : false, 'led-red-steady' : false , 'led-green-steady' : false, 'led-green-flashing' : false, 'led-yellow-steady' : false, 'led-yellow': false }"> </div> </div>
+</div>
+
+
+                </div>
+
+                <div class='col-sm-offset-3 col-xs-12 col-sm-3 hidden-xs'>
+                    <div class="form-group form-inline">
+                        <div>
+                            <label class="control-label" style='min-width:150px'>Tank Level High : </label>
+                            <span *ngIf="!editMode"> {{jsonlist ? jsonlist[0].tanklevelhisp : ''}}</span>
+                            <input *ngIf="editMode" type="textbox" id="tankLevelHigh" class='form-control' [(ngModel)]='tanklevelhisp1' style="width: 55px">
+                        </div>
+                        <div style='margin-top : 10px'>
+                            <label class="control-label" style='min-width:150px'>Tank Level High High : </label>
+                            <span *ngIf="!editMode"> {{jsonlist ? jsonlist[0].tanklevelhihisp : ''}}</span>
+                            <input *ngIf="editMode" type="textbox" id="tankLevelHighHigh" class='form-control' [(ngModel)]='tanklevelhihisp1' style="width: 55px">
+                        </div>
+                        <button type="button" *ngIf="!editMode" class="editSetPoints btn btn-primary" (click)="editingMode()">Edit</button>
+                        <button type="button" *ngIf="editMode" class="btn btn-primary" (click)="setHighPoints( tanklevelhisp1, tanklevelhihisp1)">Update</button>
+
+                        <!-- <button type="button" *ngIf = "editMode" class="btn btn-primary" (click)="setHighPoints( tankLevelHigh.value, tankLevelHighHigh.value)">Update</button> -->
+
+                    </div>
+
+                </div>
+                <!-- Small Screen Edit Configure SetPoint Button(Glyphicon) -->
+
+                <div class='editIcon col-xs-12 visible-xs'>
+                    <div class="form-group form-inline">
+                       <!-- <input type="button" class="btn btn-primary " value="Set Configure Points">
+                       <span class="glyphicon glyphicon-edit" (click)='configureHp()'></span> -->
+                       <button type="button" class="btn btn-primary btn-lg" (click)='configureHp()'>
+                        Configure <span class="glyphicon glyphicon-edit"></span>
+                        </button>
+                       
+                    </div>
+                    <!-- end Glyphicon -->
+
+                </div>
+            </div>
+
+
+            <div class='row'>
+                <div class='col-xs-6 col-sm-3'>
+                    <div class="form-group form-inline pull-right">
+                        <div>
+                            <label><h4>Running Status: </h4> </label>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-xs-3 col-sm-3' style="margin-top:1.2em;margin-right:3em;left:3em">
+                    <div class='item pull-left'>
+                        <input type="checkbox" id="toggle_today_summary" [(ngModel)]='pumpStatusBoolean' (change)='pumpBooleanChange(pumpStatusBoolean)'> <!--pumpBooleanChange(pumpStatusBoolean)  -->
+                        <div class="toggle">
+                            <label for="toggle_today_summary"><i></i></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--  </div>    
+                     <!--   <div class='col-sm-3' style="margin-top:1.8em;margin-right:3em;left:3em">
+                             <div class='item pull-left' >
+                                <input type="checkbox" id="toggle_today_summary" [(ngModel)]='pumpStatusBoolean' (change)='pumpBooleanChange(pumpStatusBoolean)'>
+                                <div class="toggle">
+                                    <label for="toggle_today_summary"><i></i></label>
+                                </div>
+                            </div>            
+                            </div>
+                    -->
+
+
+
+            <div class='row'>
+                <div class='col-md-6 hidden-xs hidden-sm'>
+                    <img src='app/assets/images/image.png' class='img img-responsive' alt='image'>
+                </div>
+                <div class='col-xs-12 col-sm-offset-3 col-sm-3'>
+                    <!--<oil-amchart> </oil-amchart>-->
+                    <div id="chartdiv"></div>
+                </div>
+            </div>
+
+
+            <div class='row'>
+                <div class="col-sm-offset-3 col-sm-3  col-xs-12">
+                    <span>Flow Rate (bpd):</span>
+
+                    <span><b>{{jsonlist ? jsonlist[0].flowrate : ''}}</b></span>
+                </div>
+                <div class="col-sm-offset-3 col-sm-12 col-md-3 col-xs-12" style="font-size: 15px">
+                    <span>Tank Level :</span>
+                    <span><b>{{jsonlist ? jsonlist[0].tanklevel : ""}}</b></span>
+                </div>
+            </div>
+
+            <!-- oil tank level chart -->
+
+            <!--  <img src="./app/assets/images/image.png"
+                 class="img-responsive center-block"/> -->
+        </div>
+
+    </div>
+

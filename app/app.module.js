@@ -15,13 +15,14 @@ var forms_1 = require('@angular/forms');
 var app_routing_1 = require('./app.routing');
 var app_component_1 = require('./app.component');
 var welcome_component_1 = require('./home/welcome.component');
-var hichart_component_1 = require('./charts/hichart.component');
+//import { HichartComponent } from './charts/hichart.component';
 var oilChart_component_1 = require('./home/oilChart.component');
 var ng2_bs3_modal_1 = require('ng2-bs3-modal/ng2-bs3-modal');
+var main_component_1 = require('./home/main.component');
 //import { UiSwitchModule } from '@youmesoft/ng2-ui-switch';
 //import { SwitchComponent } from 'angular2-bootstrap-switch/components';
 // import {ModalComponent} from 'ng2-bs3-modal/ng2-bs3-modal';
-var angular2_highcharts_1 = require('angular2-highcharts');
+//import { ChartModule } from 'angular2-highcharts';
 var amcharts3_angular_1 = require("@amcharts/amcharts3-angular");
 var flashlights_component_1 = require('./home/flashlights.component');
 var AppModule = (function () {
@@ -35,14 +36,17 @@ var AppModule = (function () {
                 app_routing_1.routing,
                 forms_1.FormsModule,
                 ng2_bs3_modal_1.Ng2Bs3ModalModule,
-                angular2_highcharts_1.ChartModule.forRoot(require('highcharts'), amcharts3_angular_1.AmChartsModule)
+                amcharts3_angular_1.AmChartsModule /*UiSwitchModule,
+                ChartModule.forRoot(require('highcharts'),
+                AmChartsModule )*/
             ],
             declarations: [
                 app_component_1.AppComponent,
                 welcome_component_1.WelcomeComponent,
-                hichart_component_1.HichartComponent,
+                /* HichartComponent ,*/
                 oilChart_component_1.oilChartComponent,
-                flashlights_component_1.flashLightsComponent
+                flashlights_component_1.flashLightsComponent,
+                main_component_1.MainComponent
             ],
             providers: [amcharts3_angular_1.AmChartsService],
             bootstrap: [app_component_1.AppComponent]
