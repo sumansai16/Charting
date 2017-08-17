@@ -5,9 +5,9 @@ import { FormsModule } from '@angular/forms';
 
 import { routing } from './app.routing';
 import { AppComponent }  from './app.component';
-import { WelcomeComponent } from './home/welcome.component';
+//import { WelcomeComponent } from './home/welcome.component';
 //import { HichartComponent } from './charts/hichart.component';
-import { oilChartComponent } from './home/oilChart.component';
+// import { oilChartComponent } from './home/oilChart.component';
 import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { MainComponent } from './home/main.component';
 
@@ -17,7 +17,7 @@ import { MainComponent } from './home/main.component';
 
 //import { ChartModule } from 'angular2-highcharts';
 import { AmChartsModule, AmChartsService } from "@amcharts/amcharts3-angular";
-import { flashLightsComponent } from './home/flashlights.component';
+//import { flashLightsComponent } from './home/flashlights.component';
 
 
 @NgModule({
@@ -33,10 +33,10 @@ import { flashLightsComponent } from './home/flashlights.component';
   ],
   declarations: [
     AppComponent,
-    WelcomeComponent,
+   /* WelcomeComponent, */
    /* HichartComponent ,*/
-    oilChartComponent,
-    flashLightsComponent,
+   /* oilChartComponent, */
+   /* flashLightsComponent, */
     MainComponent
       ],
   providers:[ AmChartsService ],

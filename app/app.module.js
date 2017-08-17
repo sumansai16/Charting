@@ -14,9 +14,9 @@ var http_1 = require('@angular/http');
 var forms_1 = require('@angular/forms');
 var app_routing_1 = require('./app.routing');
 var app_component_1 = require('./app.component');
-var welcome_component_1 = require('./home/welcome.component');
+//import { WelcomeComponent } from './home/welcome.component';
 //import { HichartComponent } from './charts/hichart.component';
-var oilChart_component_1 = require('./home/oilChart.component');
+// import { oilChartComponent } from './home/oilChart.component';
 var ng2_bs3_modal_1 = require('ng2-bs3-modal/ng2-bs3-modal');
 var main_component_1 = require('./home/main.component');
 //import { UiSwitchModule } from '@youmesoft/ng2-ui-switch';
@@ -24,7 +24,7 @@ var main_component_1 = require('./home/main.component');
 // import {ModalComponent} from 'ng2-bs3-modal/ng2-bs3-modal';
 //import { ChartModule } from 'angular2-highcharts';
 var amcharts3_angular_1 = require("@amcharts/amcharts3-angular");
-var flashlights_component_1 = require('./home/flashlights.component');
+//import { flashLightsComponent } from './home/flashlights.component';
 var AppModule = (function () {
     function AppModule() {
     }
@@ -42,10 +42,10 @@ var AppModule = (function () {
             ],
             declarations: [
                 app_component_1.AppComponent,
-                welcome_component_1.WelcomeComponent,
+                /* WelcomeComponent, */
                 /* HichartComponent ,*/
-                oilChart_component_1.oilChartComponent,
-                flashlights_component_1.flashLightsComponent,
+                /* oilChartComponent, */
+                /* flashLightsComponent, */
                 main_component_1.MainComponent
             ],
             providers: [amcharts3_angular_1.AmChartsService],

@@ -7,8 +7,8 @@ import { BrowserModule }          from '@angular/platform-browser';
 import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 import {ModalComponent} from 'ng2-bs3-modal/ng2-bs3-modal';
 import { AmChartsService, AmChartsModule } from "@amcharts/amcharts3-angular";
-import { oilChartComponent } from './oilChart.component';
-import { flashLightsComponent } from './flashlights.component';
+//import { oilChartComponent } from './oilChart.component';
+//import { flashLightsComponent } from './flashlights.component';
 
 import { ChartModule }            from 'angular2-highcharts'; 
 
