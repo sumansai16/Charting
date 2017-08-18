@@ -10,7 +10,7 @@ import { AmChartsService, AmChartsModule } from "@amcharts/amcharts3-angular";
 //import { oilChartComponent } from './oilChart.component';
 //import { flashLightsComponent } from './flashlights.component';
 
-import { ChartModule }            from 'angular2-highcharts'; 
+//import { ChartModule }            from 'angular2-highcharts'; 
 
 @Component({
     selector: 'main',
