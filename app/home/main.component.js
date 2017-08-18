@@ -190,10 +190,10 @@ this._http.request('http://nextapi-xto.azurewebsites.net/api/RodPumpDemo/GetRodP
             "pathToImages": "https://www.amcharts.com/lib/3/images/",
             "dataProvider": this.generateChartData(),
             "valueAxes": [{
-                    "stackType": "100%",
+                    "stackType": "regular",
                     "gridAlpha": 0,
                     "minimum": 0,
-                    "maximum": 193
+                    "maximum": 600
                 }],
             "graphs": [{
                     "type": "column",
@@ -246,8 +246,16 @@ this._http.request('http://nextapi-xto.azurewebsites.net/api/RodPumpDemo/GetRodP
     };
     MainComponent.prototype.generateChartData = function () {
         var chartData = [];
-        chartData.push({ "category": "Oil Level in the Tank", "value1": this.jsonlist ? this.jsonlist[0].tanklevel : null, "value2": 50 });
-        //  chartData.push({"category":"Oil Level in the Tank", "value1": 193 /*,"value2":70  */  });
+        var tanklevelVal1;
+        var tanklevelVal2;
+        var tanklevelInBPS1;
+        var tanklevelInBPS2;
+        tanklevelVal1 = this.jsonlist ? this.jsonlist[0].tanklevel : 0;
+        tanklevelVal2 = (tanklevelVal1 > 192) ? 0 : (192 - tanklevelVal1);
+        tanklevelInBPS1 = tanklevelVal1 * 3.125; //(tanklevelVal1 * 600/192)
+        tanklevelInBPS2 = tanklevelVal2 * 3.125;
+        chartData.push({ "category": "Oil Level in the Tank", "value1": tanklevelInBPS1, "value2": tanklevelInBPS2 });
+        // chartData.push({"category":"Oil Level in the Tank", "value1": 295 ,"value2":193   });
         return chartData;
     };
     ;

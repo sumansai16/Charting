@@ -242,10 +242,10 @@ createChart() {
   "pathToImages": "https://www.amcharts.com/lib/3/images/",
     "dataProvider": this.generateChartData(),
     "valueAxes": [{
-        "stackType": "100%",
+        "stackType": "regular",
         "gridAlpha": 0,
         "minimum": 0,
-        "maximum": 193
+        "maximum": 600
         //"maximum":193
        // "strictMinMax":true
     }],
@@ -304,9 +304,13 @@ generateChartData(){
    let chartData: any= [];
     let tanklevelVal1 : any;
     let tanklevelVal2 : any;
+    let tanklevelInBPS1 : any;
+    let tanklevelInBPS2 : any;
     tanklevelVal1 =  this.jsonlist ? this.jsonlist[0].tanklevel : 0 ;
     tanklevelVal2 = ( tanklevelVal1 > 192)? 0 : (192 - tanklevelVal1) ;
-     chartData.push({"category":"Oil Level in the Tank", "value1": tanklevelVal1 ,"value2": tanklevelVal2 });
+    tanklevelInBPS1 = tanklevelVal1 * 3.125;   //(tanklevelVal1 * 600/192)
+    tanklevelInBPS2 = tanklevelVal2 * 3.125
+     chartData.push({"category":"Oil Level in the Tank", "value1": tanklevelInBPS1 ,"value2": tanklevelInBPS2 });
      // chartData.push({"category":"Oil Level in the Tank", "value1": 295 ,"value2":193   });
      return chartData;
    };
