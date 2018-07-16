@@ -50,7 +50,7 @@ export class MainComponent implements OnInit, OnDestroy {
     constructor(public _http: Http, private AmCharts: AmChartsService,) {
         
         Observable.interval(500).flatMap(() => {
-                return this._http.get('http://nextapi-xto.azurewebsites.net/api/RodPumpDemo/GetRodPumpCosmo')
+                return this._http.get('http://xxxxxxxxxxxxxxxx.azurewebsites.net/api/RodPumpDemo/GetRodPumpCosmo')
           })
                 .subscribe((response)=>{
                 this.jsonlist = response.json();
@@ -77,7 +77,7 @@ export class MainComponent implements OnInit, OnDestroy {
   */
         /*
       Observable.interval(2000).flatMap( () => {
-          return this._http.request('http://nextapi-xto.azurewebsites.net/api/RodPumpDemo/GetRodPumpVals')
+          return this._http.request('http://xxxxxxxxxxxxxx.azurewebsites.net/api/RodPumpDemo/GetRodPumpVals')
       }).subscribe((res: Response) => {
                 this.data = res.json();
                 // this.datalist = JSON.parse(this.data);
@@ -118,7 +118,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
 /*
     getUser() {
-    return this._http.get(`http://nextapi-xto.azurewebsites.net/api/RodPumpDemo/GetRodPumpCosmo`)
+    return this._http.get(`http://xxxxxxxxxxxxxxx.net/api/RodPumpDemo/GetRodPumpCosmo`)
     .map((res:Response) => res.json());
   }
 loadUser(){
@@ -129,7 +129,7 @@ loadUser(){
 
 /* Updates Database with tanklevel high and high */
 setHighPoints(tankLevelHigh, tankLevelHighHigh) {
-    //url : string = 'http://nextapi-xto.azurewebsites.net/api/RodPumpDemo/PostSPs'
+    //url : string = 'http://xxxxxxxxxxxxxx.azurewebsites.net/api/RodPumpDemo/PostSPs'
     
     let headers = new Headers();
 headers.append('Content-Type', 'application/json');
@@ -139,7 +139,7 @@ headers.append('Content-Type', 'application/json');
  this.editMode = false;
 
  let options = new RequestOptions({ headers: headers });
-     return this._http.post('https://nextapi-xto.azurewebsites.net/api/RodPumpDemo/PostSPs', data, options)
+     return this._http.post('https://xxxxxxxxxxxxxxx.azurewebsites.net/api/RodPumpDemo/PostSPs', data, options)
          .subscribe((response:Response) => {
               console.log(data);
               console.log(response);
@@ -158,7 +158,7 @@ pumpBooleanChange(pumpStatusBoolean){
  let setPointData = {"pumpstatus": this.datalist.pumpstatus, "tanklevelhisp": this.tanklevelhisp, "tanklevelhihisp": this.tanklevelhihisp };
  //console.log(JSON.stringify(setPointData));
 let options = new RequestOptions({ headers: headers });
-     return this._http.post('https://nextapi-xto.azurewebsites.net/api/RodPumpDemo/PostSPs', setPointData, options)
+     return this._http.post('https://xxxxxxxxxxxx.azurewebsites.net/api/RodPumpDemo/PostSPs', setPointData, options)
          .subscribe((response:Response) => {
           console.log("Set points submitted successfully");
          })
@@ -175,7 +175,7 @@ headers.append('Content-Type', 'application/json');
  
 
  let options = new RequestOptions({ headers: headers });
-     return this._http.post('https://nextapi-xto.azurewebsites.net/api/RodPumpDemo/PostUserInfo', userData, options)
+     return this._http.post('https://xxxxxxxxxxx.azurewebsites.net/api/RodPumpDemo/PostUserInfo', userData, options)
          .subscribe((response:Response) => {
              this.modal.close();
          })
@@ -206,7 +206,7 @@ configureHp(){
 }
 /* Updates API from Edit Glyphicon xs resolution */
 updateSetPoints(tankLevelHighInput, tankLevelHighHighInput, pumpStatusInput) {
-    //url : string = 'http://nextapi-xto.azurewebsites.net/api/RodPumpDemo/PostSPs'
+    //url : string = 'http://xxxxxxxxxxxx.azurewebsites.net/api/RodPumpDemo/PostSPs'
     
     let headers = new Headers();
 headers.append('Content-Type', 'application/json');
@@ -217,7 +217,7 @@ headers.append('Content-Type', 'application/json');
  //this.editMode = false;
 
  let options = new RequestOptions({ headers: headers });
-     return this._http.post('https://nextapi-xto.azurewebsites.net/api/RodPumpDemo/PostSPs', data, options)
+     return this._http.post('https://xxxxxxxxxxxxxxxxx.azurewebsites.net/api/RodPumpDemo/PostSPs', data, options)
          .subscribe((response:Response) => {
               console.log(JSON.stringify(data));
               console.log(response);
